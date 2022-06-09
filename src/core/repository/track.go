@@ -1,8 +1,5 @@
 package repository
 
-import "github.com/lipefebn/spotify-crud/src/adapter/relational"
-
-type TrackTable relational.TableI[Track]
 
 type Track struct {
 	ID 					string
@@ -16,3 +13,5 @@ type Track struct {
 	Popularity 			int
 	Is_playable 		bool
 }
+
+func (t Track) OrderBy() string { return "popularity" }

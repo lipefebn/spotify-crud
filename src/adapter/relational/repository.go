@@ -1,6 +1,8 @@
 package relational
 
-import "gorm.io/gorm"
+import (
+	"gorm.io/gorm"
+)
 
 type Model any
 
@@ -15,7 +17,9 @@ type Table[M Model] struct {
 	db *gorm.DB
 }
 
-func NewTable[M Model] (db *gorm.DB) *Table[M] { return &Table[M]{ db } }
+func NewTable[M Model] (db *gorm.DB) *Table[M] { 
+	return &Table[M]{ db } 
+}
 
 func (t Table[M]) Create(row M) error {
 	result := t.db.Create(row)
@@ -25,18 +29,18 @@ func (t Table[M]) Create(row M) error {
 	return nil
 }
 
-func (t Table[M]) Select(query string, args ...any) (result []M) {
-	t.db.Where(query, args...).Find(&result)
+func (t Table[M]) Select(orderTable, query string, args ...any) (result []M) {
+	t.db.Where(query, args...).Order(orderTable).Limit(10).Find(&result)
 	return result
 }
 
-func (t Table[M]) Update(oldRow M, newRow M) error{
-	result := t.db.Model(oldRow).Updates(&newRow)
+func (t Table[M]) Update(oldRow string, newRow M) error{
+	result := t.db.Where("id = ?", oldRow).Updates(&newRow)
 	return result.Error
 }
 
-func (t Table[M]) Delete(query string, args... any) error {
-	result := t.db.Delete(query, args...)
+func (t Table[M]) Delete(id string, m M) error {
+	result := t.db.Where("id = ?", id).Delete(m)
 	if result.Error != nil{
 		return result.Error
 	}
