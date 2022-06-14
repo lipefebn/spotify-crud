@@ -4,13 +4,15 @@ import (
 	"log"
 	"os"
 	"time"
+	"github.com/joho/godotenv"
 
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 )
 
-func Connect(path string) *gorm.DB{
+func Connect() *gorm.DB{
+
 	newLogger := logger.New(
 		log.New(os.Stdout, "\r\n", log.LstdFlags), // io writer
 		logger.Config{
@@ -19,7 +21,13 @@ func Connect(path string) *gorm.DB{
 		  IgnoreRecordNotFoundError: true,           // Ignore ErrRecordNotFound error for logger
 		  Colorful:                  false,          // Disable color
 		},
-	  )
+	)
+	if err := godotenv.Load("../.env"); err != nil {
+		panic("CONFIGURATION ERROR: .ENV")
+	}
+
+	path := os.Getenv("PATH_SQLITE")
+
 	db, err := gorm.Open(sqlite.Open(path), &gorm.Config{
 		Logger: newLogger,
 	})

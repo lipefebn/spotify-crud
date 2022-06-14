@@ -22,7 +22,7 @@ func render(header, tab ui.Drawable) {
 }
 
 var (
-	connectionDb = config.Connect("..."/* path sqlite */)
+	connectionDb = config.Connect()
 	queryDb = query.DB{ Db: connectionDb }
 	resultsQuery = [3]ui.Drawable{} 
 	uiEvents = ui.PollEvents()
