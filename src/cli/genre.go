@@ -7,7 +7,7 @@ import (
 	"github.com/gizak/termui/v3/widgets"
 	"github.com/lipefebn/spotify-crud/src/adapter/query"
 	"github.com/lipefebn/spotify-crud/src/adapter/relational"
-	"github.com/lipefebn/spotify-crud/src/core/repository"
+	"github.com/lipefebn/spotify-crud/src/core/repository/spotify"
 )
 
 func topArtistsCli() {

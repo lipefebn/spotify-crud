@@ -1,7 +1,7 @@
 package query
 
 import (
-	"github.com/lipefebn/spotify-crud/src/core/repository"
+	"github.com/lipefebn/spotify-crud/src/core/repository/spotify"
 	"gorm.io/gorm"
 )
 

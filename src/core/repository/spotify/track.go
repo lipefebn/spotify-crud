@@ -14,4 +14,8 @@ type Track struct {
 	Is_playable 		bool
 }
 
+func (t Track) GetId() string{
+	return t.ID
+}
+
 func (t Track) OrderBy() string { return "popularity" }

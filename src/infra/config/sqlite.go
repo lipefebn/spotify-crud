@@ -1,27 +1,28 @@
 package config
 
 import (
+	"github.com/joho/godotenv"
 	"log"
 	"os"
 	"time"
-	"github.com/joho/godotenv"
 
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 )
 
-func Connect() *gorm.DB{
+func Connect() *gorm.DB {
 
 	newLogger := logger.New(
-		log.New(os.Stdout, "\r\n", log.LstdFlags), // io writer
+		log.New(os.Stdout, "\r\n", log.LstdFlags),
 		logger.Config{
-		  SlowThreshold:              time.Second,   // Slow SQL threshold
-		  LogLevel:                   logger.Silent, // Log level
-		  IgnoreRecordNotFoundError: true,           // Ignore ErrRecordNotFound error for logger
-		  Colorful:                  false,          // Disable color
+			SlowThreshold:             time.Second,
+			LogLevel:                  logger.Silent,
+			IgnoreRecordNotFoundError: true,
+			Colorful:                  false,
 		},
 	)
+	
 	if err := godotenv.Load("../.env"); err != nil {
 		panic("CONFIGURATION ERROR: .ENV")
 	}

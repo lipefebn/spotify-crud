@@ -8,3 +8,7 @@ type Album struct {
 	Release_date	int64
 	Popularity		int
 }
+
+func (a Album) GetId() string{
+	return a.ID
+}

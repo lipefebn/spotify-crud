@@ -1,0 +1,72 @@
+basePath: /
+definitions:
+  handler.ResponseError:
+    properties:
+      code:
+        type: string
+      msg:
+        type: string
+    type: object
+  repository.Album:
+    properties:
+      album_group:
+        type: string
+      album_type:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      popularity:
+        type: integer
+      release_date:
+        type: integer
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: fiber@swagger.io
+    name: API Support
+  description: This is a sample swagger for Fiber
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Fiber Example API
+  version: "1.0"
+paths:
+  /album:
+    post:
+      consumes:
+      - application/json
+      description: insert album in database
+      parameters:
+      - description: payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/repository.Album'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/handler.ResponseError'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ResponseError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ResponseError'
+      summary: Insert album
+      tags:
+      - album
+swagger: "2.0"

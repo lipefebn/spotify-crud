@@ -7,3 +7,7 @@ type Artist struct {
 	Popularity		int
 	Followers		int	
 }
+
+func (a Artist) GetId() string{
+	return a.ID
+}

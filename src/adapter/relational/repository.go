@@ -1,6 +1,8 @@
 package relational
 
 import (
+	"fmt"
+
 	"gorm.io/gorm"
 )
 
@@ -23,6 +25,7 @@ func NewTable[M Model] (db *gorm.DB) *Table[M] {
 
 func (t Table[M]) Create(row M) error {
 	result := t.db.Create(row)
+	fmt.Println(result.RowsAffected)
 	if result.Error != nil {
 		return result.Error
 	}
