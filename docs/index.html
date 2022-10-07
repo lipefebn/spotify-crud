@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Docs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.14.2/swagger-ui.css">
+</head>
+
+<body>
+    <div id="swagger" data-spec="{{spec}}">
+        Loading....
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.14.2/swagger-ui-bundle.js"
+    integrity="sha512-bzB98rxEHVYEOybwj3mirNg2DGw6IumwpWiL7QrPUADsshfb4Susvxo4chE+PjWdFs0ojHr7pTdyulbb38q9hw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    const swaggerOptions = {
+        url: "https://raw.githubusercontent.com/lipefebn/spotify-crud/main/docs/swagger.json",
+        dom_id: '#swagger',
+        filter: true
+    }
+    const swagger_ui = SwaggerUIBundle(swaggerOptions)
+    window.ui = swagger_ui
+</script>
+
+</html>
