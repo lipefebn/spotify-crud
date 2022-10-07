@@ -4,7 +4,7 @@ import (
 	"strconv"
 
 	"github.com/lipefebn/spotify-crud/src/adapter/relational"
-	"github.com/lipefebn/spotify-crud/src/core/repository"
+	"github.com/lipefebn/spotify-crud/src/core/repository/spotify"
 )
 
 func InitTrackCli() {
