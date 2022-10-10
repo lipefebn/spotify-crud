@@ -1,0 +1,24 @@
+@startuml
+
+title first
+
+actor test
+participant b
+participant c
+participant d
+database    e
+
+test -> b ++ : testando
+group 1
+    b -> e ++ : testando
+    return
+    c -> e ++ : testando
+    return
+    d -> e ++ : testando
+    return
+    b -> d ++ : testando
+    return
+end
+return
+
+@enduml

@@ -1,0 +1,13 @@
+name: Update wiki
+
+on: [push]
+
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: Run build script
+        run: TOKEN=${{secrets.GITHUB_TOKEN}} PATH_DIAGRAMS="/docs/diagram" ./docs/wiki.sh
+        shell: bash
