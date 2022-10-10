@@ -34,6 +34,8 @@ function getWikiRepository() {
     # move to wiki repository
     cd $TEMP_REPO_NAME 
     #Update path local
+    echo $GITHUB_REPOSITORY
+    echo $GITHUB_REPOSITORY | grep '/[[:alnum:]\-\.\_]\+$' --only-matching
     PATH_DIAGRAMS_LOCAL=..$(echo $GITHUB_REPOSITORY | grep '/[[:alnum:]\-\.\_]\+$' --only-matching)$PATH_DIAGRAMS
     # remove old file
     rm diagrams.md
