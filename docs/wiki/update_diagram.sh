@@ -36,9 +36,9 @@ function getWikiRepository() {
     #Update path local
     echo $GITHUB_REPOSITORY
     echo $GITHUB_REPOSITORY | grep '/[[:alnum:]\-\.\_]\+$' --only-matching
-    PATH_DIAGRAMS_LOCAL=..$(echo $GITHUB_REPOSITORY | grep '/[[:alnum:]\-\.\_]\+$' --only-matching)$PATH_DIAGRAMS
+    PATH_DIAGRAMS_LOCAL=..$(echo $GITHUB_REPOSITORY | grep '/[[:alnum:]_\.\-]\+$' --only-matching)$PATH_DIAGRAMS
     # remove old file
-    rm diagrams.md
+    rm Diagrams.md
 }
 
 # for each in svg file and put in markdown
