@@ -20,4 +20,4 @@ wget -q -O plantuml.jar https://github.com/plantuml/plantuml/releases/download/v
 java -jar plantuml.jar -charset UTF-8 -output "./$PATH_OUTPUT" "./$PATH_PUML/**.puml"
 ls ./$PATH_PUML
 echo ----------------------------
-ls ./$OUTPUT
+ls ./$PATH_OUTPUT
