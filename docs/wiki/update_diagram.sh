@@ -12,12 +12,20 @@ fi
 
 PATH_DIAGRAMS_LOCAL=$PATH_DIAGRAMS
 PATH_DIAGRAMS_GIT="https://github.com/${GITHUB_REPOSITORY}/blob/main$PATH_DIAGRAMS"
+message=`git log -1 --format="%s"`
+
+# Stop the execution if has an error
+function hasError() {
+    if [ $? -gt 0 ]; then
+        echo "ERROR:  $1"
+        exit 1
+    fi
+}
 
 function SetConfigsGit() {
     # get configs git
-    author=`git log -1 --format="%an"`
-    email=`git log -1 --format="%ae"`
-    message=`git log -1 --format="%s"`
+    local author=`git log -1 --format="%an"`
+    local email=`git log -1 --format="%ae"`
 
     # set configs git
     git config --global user.email "$email"
@@ -31,37 +39,43 @@ function getWikiRepository() {
 
     # clone wiki repository
     git clone "https://$GITHUB_ACTOR:$TOKEN@github.com/$GITHUB_REPOSITORY.wiki.git" "$TEMP_REPO_NAME"
+    hasError "Could not clone repo"
+    
     # move to wiki repository
     cd $TEMP_REPO_NAME 
+    
     #Update path local
-    echo $GITHUB_REPOSITORY
-    echo $GITHUB_REPOSITORY | grep '/[[:alnum:]\-\.\_]\+$' --only-matching
     PATH_DIAGRAMS_LOCAL=..$(echo $GITHUB_REPOSITORY | grep '/[[:alnum:]_\.\-]\+$' --only-matching)$PATH_DIAGRAMS
+    
     # remove old file
     rm Diagrams.md
 }
 
-# for each in svg file and put in markdown
-function putEachSvgFile() {
-    FILES_SVG=$(ls $PATH_DIAGRAMS_LOCAL -t -U | grep -oP "^[a-z]+(_[a-z]+)*\.svg$")
-    for i in $FILES_SVG; do
+# for each in png file and put in markdown
+function putEachPngFile() {
+    local files_png=$(ls $PATH_DIAGRAMS_LOCAL -t -U | grep -oP "^[a-z]+(_[a-z]+)*\.png$")
+    hasError "Could not get png file"
+    
+    for i in $files_png; do
         doMarkdown $i
     done
 }
 
-#build markdown
+# build markdown
 function doMarkdown() {
-    file_path="$PATH_DIAGRAMS_GIT/$1"
-    getNameToNewFile $1
-    echo "## $name_new_file" >> Diagrams.md
+    local file_path="$PATH_DIAGRAMS_GIT/$1"
+    local title=$(getNameToNewFile $1)
+
+    echo "## $title" >> Diagrams.md
     echo "![$1]($file_path)" >> Diagrams.md
 }
 
 # build the header for each diagram, 
-function getNameToNewFile() {
-    name_new_file=`expr match "$1" '\([a-z_]*\)'` # remove .svg
-    name_new_file=${name_new_file//_/ } # replace _ to blank space
-    name_new_file=${name_new_file^} # first letter uppercase
+function getNameToTitle() {
+    local title=`expr match "$1" '\([a-z_]*\)'` # remove .png
+    title=${title//_/ } # replace _ to blank space
+    title=${title^} # first letter uppercase
+    echo title
 }
 
 function doPush() {
@@ -81,7 +95,7 @@ function doPush() {
 echo "cloning the wiki repository..."
 getWikiRepository
 echo "generating the markdown file..."
-putEachSvgFile
+putEachPngFile
 echo "configuring git..."
 SetConfigsGit
 echo "starting the function doPush..."
