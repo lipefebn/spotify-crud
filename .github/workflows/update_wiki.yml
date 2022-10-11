@@ -11,7 +11,7 @@ jobs:
       - name: Render PlantUML to wiki
         run: ./docs/wiki/puml_to_png.sh
         shell: bash
-        with:
+        env:
           TOKEN: ${secrets.GITHUB_TOKEN}
           PATH_UML: "/docs/diagram/puml"
           PATH_OUTPUT: "docs/diagram/images"
