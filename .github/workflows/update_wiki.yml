@@ -8,6 +8,12 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
-      - name: Run build script
-        run: TOKEN=${{secrets.GITHUB_TOKEN}} PATH_DIAGRAMS="/docs/diagram" ./docs/wiki/update_diagram.sh
-        shell: bash
+      - name: Render PlantUML to wiki
+        uses: frederikheld/render-plantuml-to-wiki-action@v1.0.1
+        with:
+          WIKI_TOKEN: ${{ secrets.WIKI_TOKEN }}
+          INPUT_DIR: 'docs/diagram/puml'
+          OUTPUT_DIR: 'docs/diagram/images'
+#      - name: Run build script
+#        run: TOKEN=${{secrets.GITHUB_TOKEN}} PATH_DIAGRAMS="/docs/diagram" ./docs/wiki/update_diagram.sh
+#        shell: bash
