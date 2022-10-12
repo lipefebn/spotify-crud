@@ -1,9 +1,5 @@
 #!/bin/bash
 
-PATH_PUML="docs/diagram/puml"
-#docs/diagram/images
-
-
 if [ -z "$PATH_PUML" ]; then
     echo "PATH_PUML is not specified"
     exit 1
@@ -30,6 +26,7 @@ function sanitizePath() {
 }
 PATH_PUML=$(sanitizePath $PATH_PUML)
 
+# back to the root path of the repository
 function updatePath() {
     local count="${PATH_PUML//[^\/]}"
     local returns_paths
@@ -45,7 +42,3 @@ mkdir ./$PATH_OUTPUT
 
 wget -q -O plantuml.jar https://github.com/plantuml/plantuml/releases/download/v1.2022.8/plantuml-1.2022.8.jar
 java -jar plantuml.jar -charset UTF-8 -output $(updatePath)$PATH_OUTPUT "./$PATH_PUML/**.puml"
-
-ls ./$PATH_PUML
-echo ----------------------------
-ls ./$PATH_OUTPUT
