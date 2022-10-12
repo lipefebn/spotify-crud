@@ -12,7 +12,6 @@ fi
 
 PATH_DIAGRAMS_LOCAL=$PATH_DIAGRAMS
 PATH_DIAGRAMS_GIT="https://github.com/${GITHUB_REPOSITORY}/blob/main$PATH_DIAGRAMS"
-message=`git log -1 --format="%s"`
 
 # Stop the execution if has an error
 function hasError() {
@@ -24,8 +23,9 @@ function hasError() {
 
 function SetConfigsGit() {
     # get configs git
-    local author=`git log -1 --format="%an"`
-    local email=`git log -1 --format="%ae"`
+    author=`git log -1 --format="%an"`
+    email=`git log -1 --format="%ae"`
+    message=`git log -1 --format="%s"`
 
     # set configs git
     git config --global user.email "$email"
