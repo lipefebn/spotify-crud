@@ -12,6 +12,7 @@ fi
 
 PATH_DIAGRAMS_LOCAL=$PATH_DIAGRAMS
 PATH_DIAGRAMS_GIT="https://github.com/${GITHUB_REPOSITORY}/blob/main$PATH_DIAGRAMS"
+message=`git log -1 --format="%s"`
 
 # Stop the execution if has an error
 function hasError() {
@@ -23,9 +24,8 @@ function hasError() {
 
 function SetConfigsGit() {
     # get configs git
-    author=`git log -1 --format="%an"`
-    email=`git log -1 --format="%ae"`
-    message=`git log -1 --format="%s"`
+    local author=`git log -1 --format="%an"`
+    local email=`git log -1 --format="%ae"`
 
     # set configs git
     git config --global user.email "$email"
@@ -53,8 +53,9 @@ function getWikiRepository() {
 
 # for each in png file and put in markdown
 function putEachPngFile() {
-    local files_png=$(ls $PATH_DIAGRAMS_LOCAL -t -U | grep -oP "^[a-z]+(_[a-z]+)*\.png$")
-    hasError "Could not get png file"
+    local files_png
+    files_png=$(ls $PATH_DIAGRAMS_LOCAL -t -U | grep -oP "^[a-z]+(_[a-z]+)*\.png$")
+    hasError "Could not get png files"
     
     for i in $files_png; do
         doMarkdown $i
