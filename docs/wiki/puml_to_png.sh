@@ -39,12 +39,13 @@ function updatePath() {
     echo $returns_paths
 }
 
-PATH_OUTPUT=$(updatePath)$PATH_OUTPUT
 
-wget -q -O plantuml.jar https://github.com/plantuml/plantuml/releases/download/v1.2022.8/plantuml-1.2022.8.jar
 rm -r ./$PATH_OUTPUT
 mkdir ./$PATH_OUTPUT
-java -jar plantuml.jar -charset UTF-8 -output "../images" "./$PATH_PUML/**.puml"
+
+wget -q -O plantuml.jar https://github.com/plantuml/plantuml/releases/download/v1.2022.8/plantuml-1.2022.8.jar
+java -jar plantuml.jar -charset UTF-8 -output $(updatePath)$PATH_OUTPUT "./$PATH_PUML/**.puml"
+
 ls ./$PATH_PUML
 echo ----------------------------
 ls ./$PATH_OUTPUT
