@@ -19,13 +19,6 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Commit up-to-date images
-      - name: Update wiki
-        run: ./docs/wiki/update_diagram.sh
+      - name: Run build script
+        run: TOKEN=${{secrets.GITHUB_TOKEN}} PATH_DIAGRAMS="docs/diagram/images" ./docs/wiki/update_diagram.sh
         shell: bash
-        env:
-          TOKEN: ${secrets.GITHUB_TOKEN}
-          PATH_DIAGRAMS: "docs/diagram/images"
-
-#      - name: Run build script
-#        run: TOKEN=${{secrets.GITHUB_TOKEN}} PATH_DIAGRAMS="/docs/diagram" ./docs/wiki/update_diagram.sh
-#        shell: bash
