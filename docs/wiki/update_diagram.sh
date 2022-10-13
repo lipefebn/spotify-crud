@@ -84,7 +84,7 @@ function getNameToTitle() {
     local title=`expr match "$1" '\([a-z_]*\)'` # remove .png
     title=${title//_/ } # replace _ to blank space
     title=${title^} # first letter uppercase
-    echo title
+    echo $title
 }
 
 function doPush() {
