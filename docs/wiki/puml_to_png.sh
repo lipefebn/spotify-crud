@@ -15,6 +15,7 @@ if [ -z "$TOKEN" ]; then
     exit 1
 fi
 
+# This function put ./
 function sanitizePath() {
     local result=$1
     
@@ -40,5 +41,8 @@ function updatePath() {
 rm -r ./$PATH_OUTPUT
 mkdir ./$PATH_OUTPUT
 
-wget -q -O plantuml.jar https://github.com/plantuml/plantuml/releases/download/v1.2022.8/plantuml-1.2022.8.jar
-java -jar plantuml.jar -charset UTF-8 -output $(updatePath)$PATH_OUTPUT "./$PATH_PUML/**.puml"
+FILE_JAR="plantuml.jar"
+wget -q -O $FILE_JAR https://github.com/plantuml/plantuml/releases/download/v1.2022.8/plantuml-1.2022.8.jar
+java -jar $FILE_JAR -charset UTF-8 -output $(updatePath)$PATH_OUTPUT "./$PATH_PUML/**.puml"
+
+rm $FILE_JAR
