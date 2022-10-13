@@ -79,7 +79,7 @@ function putEachPngFile() {
 # [[/diagrams/diagrama_de_test.png|alt=diagrama_de_test]]
 # build markdown
 function doMarkdown() {
-    local file_path="$[[$OUTPUT_PATH/$1|alt=$1]]"
+    local file_path="[[$OUTPUT_PATH/$1|alt=$1]]"
     local title=$(getNameToTitle $1)
 
     echo "## $title" >> Diagrams.md
