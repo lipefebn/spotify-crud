@@ -55,20 +55,20 @@ function getWikiRepository() {
 }
 
 function pumlToPng() {
-    OUTPUT_DIAGRAMS="$(pwd)"$OUTPUT_DIAGRAMS
-    echo $OUTPUT_DIAGRAMS
+    local output="$(pwd)"$OUTPUT_DIAGRAMS
     FILE_JAR="plantuml.jar"
     wget -q -O $FILE_JAR https://github.com/plantuml/plantuml/releases/download/v1.2022.8/plantuml-1.2022.8.jar
     hasError "Could not get plantuml.jar"
-    java -jar $FILE_JAR -charset UTF-8 -output $OUTPUT_DIAGRAMS "${GITHUB_WORKSPACE}${PATH_PUML}/**.puml"
+    java -jar $FILE_JAR -charset UTF-8 -output $output "${GITHUB_WORKSPACE}${PATH_PUML}/**.puml"
     hasError "Could not generate png files"
     rm $FILE_JAR
 }
 
 # for each in png files and put in markdown
 function putEachPngFile() {
+    local path_diagrams="$(pwd)"$OUTPUT_DIAGRAMS
     local files_png
-    files_png=$(ls "$OUTPUT_DIAGRAMS" -t -U | grep -oP "^[a-z]+(_[a-z]+)*\.png$")
+    files_png=$(ls "$path_diagrams" -t -U | grep -oP "^[a-z]+(_[a-z]+)*\.png$")
     hasError "Could not get png files"
     
     for i in $files_png; do
@@ -79,11 +79,11 @@ function putEachPngFile() {
 # [[/diagrams/diagrama_de_test.png|alt=diagrama_de_test]]
 # build markdown
 function doMarkdown() {
-    local file_path="[[$OUTPUT_PATH/$1|alt=$1]]"
+    local file="[[$OUTPUT_DIAGRAMS/$1|alt=$1]]"
     local title=$(getNameToTitle $1)
 
     echo "## $title" >> Diagrams.md
-    echo "![$1]($file_path)" >> Diagrams.md # image
+    echo "$file" >> Diagrams.md # image
 }
 
 # build the header for each diagram
