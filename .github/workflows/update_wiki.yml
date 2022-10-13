@@ -9,5 +9,5 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
       - name: Render PlantUML to wiki
-        run: ./docs/wiki/puml_to_png.sh
+        run: ./docs/wiki/test.sh
         shell: bash
