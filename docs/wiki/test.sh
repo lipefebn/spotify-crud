@@ -1,11 +1,7 @@
 #!/bin/bash 
 
-echo ${GITHUB_WORKSPACE}
-echo -----------------------------
-pwd
-echo "******************"
-echo ${GITHUB_WORKSPACE}
-echo -----------------------------
-cd ..
-pwd
-ls
+PATH_DIAGRAMS=".ada/ada"
+#if [ -z "$PATH_DIAGRAMS" || ["$PATH_DIAGRAMS" =~ ^[\.\/]] ]; then
+if [ -z "$PATH_DIAGRAMS" ] || [[ "$PATH_DIAGRAMS" =~ ^[\.\/] ]]; then
+    echo sla
+fi

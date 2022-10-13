@@ -1,14 +1,14 @@
 #!/bin/bash 
 
-if [ -z "$TOKEN" ]; then
-    echo "TOKEN is not specified"
-    exit 1
-fi
-if [ -z "$PATH_DIAGRAMS" || [ $PATH_DIAGRAMS =~ ^[\.\/] ]]; then
+# if [ -z "$TOKEN" ]; then
+#     echo "TOKEN is not specified"
+#     exit 1
+# fi
+if [ -z "$PATH_DIAGRAMS" ] || [[ "$PATH_DIAGRAMS" =~ ^[\.\/] ]]; then
     echo "PATH_DIAGRAMS is not specified" #TODO
     exit 1
 fi
-if [ -z "$OUTPUT_DIAGRAMS" || [ $OUTPUT_DIAGRAMS =~ ^[\.\/] ]]; then
+if [ -z "$OUTPUT_DIAGRAMS" ] || [[ "$OUTPUT_DIAGRAMS" =~ ^[\.\/] ]]; then
     echo "OUTPUT_DIAGRAMS is no specified"
     exit 1
 fi
