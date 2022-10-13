@@ -3,8 +3,9 @@
 echo ${GITHUB_WORKSPACE}
 echo -----------------------------
 pwd
-echo ******************
+echo "******************"
 echo ${GITHUB_WORKSPACE}
 echo -----------------------------
 cd ..
 pwd
+ls
