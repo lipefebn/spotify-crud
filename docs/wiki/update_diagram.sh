@@ -78,7 +78,7 @@ function putEachPngFile() {
     done
 }
 
-# build markdown
+# build markdown for one file
 function doMarkdown() {
     local file_path="$PATH_DIAGRAMS_GIT/$1"
     local title=$(getNameToTitle $1)
@@ -113,9 +113,9 @@ echo "cloning the wiki repository..."
 getWikiRepository
 echo "generating png files..."
 pumlToPng
-# echo "generating the markdown file..."
-# putEachPngFile
- echo "configuring git..."
- SetConfigsGit
- echo "starting the function doPush..."
- doPush
+echo "generating the markdown file..."
+putEachPngFile
+echo "configuring git..."
+SetConfigsGit
+echo "starting the function doPush..."
+doPush
