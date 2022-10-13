@@ -13,5 +13,5 @@ jobs:
         shell: bash
         env:
           TOKEN: ${secrets.GITHUB_TOKEN}
-          PATH_PUML: "docs/diagram/puml"
+          PATH_DIAGRAMS: "docs/diagram/puml"
           PATH_OUTPUT: "diagrams"
