@@ -73,7 +73,7 @@ function putEachPngFile() {
 # build markdown
 function doMarkdown() {
     local file_path="$PATH_DIAGRAMS_GIT/$1"
-    local title=$(getNameToNewFile $1)
+    local title=$(getNameToTitle $1)
 
     echo "## $title" >> Diagrams.md
     echo "![$1]($file_path)" >> Diagrams.md # image
