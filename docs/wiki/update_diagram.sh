@@ -13,6 +13,9 @@ if [ -z "$OUTPUT_DIAGRAMS" ] || [[ "$OUTPUT_DIAGRAMS" =~ ^[\.\/] ]]; then
     exit 1
 fi
 
+OUTPUT_DIAGRAMS="/$OUTPUT_DIAGRAMS"
+PATH_DIAGRAMS="/$PATH_DIAGRAMS"
+
 # [[/diagrams/diagrama_de_test.png|alt=diagrama_de_test]]
 PATH_DIAGRAMS_GIT="https://github.com/${GITHUB_REPOSITORY}/wiki/diagrams"
 MESSAGE_COMMIT=`git log -1 --format="%s"`
