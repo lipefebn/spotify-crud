@@ -9,16 +9,8 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
       - name: Render PlantUML to wiki
-        run: ./docs/wiki/puml_to_png.sh
-        shell: bash
-        env:
-          TOKEN: ${secrets.GITHUB_TOKEN}
-          PATH_PUML: "docs/diagram/puml"
-          PATH_OUTPUT: "docs/diagram/images"
-      - name: commit images
-        uses: stefanzweifel/git-auto-commit-action@v4
+        uses: frederikheld/render-plantuml-to-wiki-action@v1.0.1
         with:
-          commit_message: Commit up-to-date images
-      - name: Run build script
-        run: TOKEN=${{secrets.GITHUB_TOKEN}} PATH_DIAGRAMS="docs/diagram/images" ./docs/wiki/update_diagram.sh
-        shell: bash
+          WIKI_TOKEN: ${{ secrets.WIKI_TOKEN }}
+          INPUT_DIR: 'docs/diagram/puml'
+          OUTPUT_DIR: 'diagrams'
