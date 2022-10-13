@@ -57,21 +57,19 @@ function getWikiRepository() {
 }
 
 function pumlToPng() {
-    echo $PATH_OUTPUT
-    PATH_OUTPUT=$(pwd$PATH_OUTPUT)
+    OUTPUT_DIAGRAMS=$(pwd$OUTPUT_DIAGRAMS)
     FILE_JAR="plantuml.jar"
     wget -q -O $FILE_JAR https://github.com/plantuml/plantuml/releases/download/v1.2022.8/plantuml-1.2022.8.jar
     hasError "Could not get plantuml.jar"
-    java -jar $FILE_JAR -charset UTF-8 -output $PATH_OUTPUT "${GITHUB_WORKSPACE}${PATH_PUML}/**.puml"
+    java -jar $FILE_JAR -charset UTF-8 -output $OUTPUT_DIAGRAMS "${GITHUB_WORKSPACE}${PATH_PUML}/**.puml"
     hasError "Could not generate png files"
-    ls $PATH_OUTPUT
     rm $FILE_JAR
 }
 
 # for each in png files and put in markdown
 function putEachPngFile() {
     local files_png
-    files_png=$(ls "$PATH_OUTPUT" -t -U | grep -oP "^[a-z]+(_[a-z]+)*\.png$")
+    files_png=$(ls "$OUTPUT_DIAGRAMS" -t -U | grep -oP "^[a-z]+(_[a-z]+)*\.png$")
     hasError "Could not get png files"
     
     for i in $files_png; do
