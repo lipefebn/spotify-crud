@@ -112,7 +112,7 @@ echo "generating png files..."
 pumlToPng
 # echo "generating the markdown file..."
 # putEachPngFile
-# echo "configuring git..."
-# SetConfigsGit
-# echo "starting the function doPush..."
-# doPush
+ echo "configuring git..."
+ SetConfigsGit
+ echo "starting the function doPush..."
+ doPush
