@@ -60,7 +60,7 @@ function pumlToPng() {
     hasError "Could not get plantuml.jar"
     java -jar $FILE_JAR -charset UTF-8 -output $PATH_OUTPUT "${GITHUB_WORKSPACE}${PATH_PUML}/**.puml"
     hasError "Could not generate png files"
-    
+    ls $PATH_OUTPUT
     rm $FILE_JAR
 }
 
