@@ -12,6 +12,6 @@ jobs:
         run: ./docs/wiki/update_diagram.sh
         shell: bash
         env:
-          TOKEN: ${secrets.GITHUB_TOKEN}
+          TOKEN: ${{secrets.GITHUB_TOKEN}}
           PATH_DIAGRAMS: "docs/diagram/puml"
           OUTPUT_DIAGRAMS: "diagrams"
