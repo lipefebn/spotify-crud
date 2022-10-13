@@ -1,5 +1,7 @@
 @startuml
 
+!theme test from .
+
 title first
 
 actor test

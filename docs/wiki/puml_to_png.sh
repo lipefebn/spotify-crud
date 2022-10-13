@@ -19,7 +19,9 @@ fi
 function sanitizePath() {
     local result=$1
     
-    if [[ ! result =~ '$\.\/.*' ]]; then
+    if [[ $result =~ ^\/.* ]]; then # start with "/""
+        result=".$result"
+    elif [[ ! $result =~ ^\.\/.* ]]; then # start without "./"
         result="./$result"
     fi
 

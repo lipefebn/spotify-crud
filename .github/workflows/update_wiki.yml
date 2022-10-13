@@ -20,5 +20,5 @@ jobs:
         with:
           commit_message: Commit up-to-date images
       - name: Run build script
-        run: TOKEN=${{secrets.GITHUB_TOKEN}} PATH_DIAGRAMS="/docs/diagram/images" ./docs/wiki/update_diagram.sh
+        run: TOKEN=${{secrets.GITHUB_TOKEN}} PATH_DIAGRAMS="docs/diagram/images" ./docs/wiki/update_diagram.sh
         shell: bash
