@@ -38,7 +38,7 @@ function hasError() {
 function SetConfigsGit() {
     # get configs git
     local email=`git log -1 --format="%ae"`
-    echo email
+    echo $email
     # set configs git
     git config --global user.email "$email"
     git config --global user.name "$GITHUB_ACTOR"
