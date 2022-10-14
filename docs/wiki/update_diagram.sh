@@ -6,6 +6,7 @@ if [ -z "$TOKEN" ]; then
 fi
 if [ -z "$PAGE_NAME" ]; then 
     echo "PAGE_NAME is no specified"
+    exit 1
 fi
 if [ -z "$PATH_DIAGRAMS" ] || [[ "$PATH_DIAGRAMS" =~ ^[\.\/] ]]; then
     echo "PATH_DIAGRAMS must follow the established pattern"
