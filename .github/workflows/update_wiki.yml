@@ -1,13 +1,6 @@
 name: On update diagrams 
 
-on:
-  push:
-    branches:
-      - '**'
-    tags-ignore:
-      - '*.*'
-    paths:
-      - docs/diagram/*
+on: [push]
 
 jobs:
   Explore-GitHub-Actions:
