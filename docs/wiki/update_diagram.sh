@@ -30,6 +30,7 @@ PATH_DIAGRAMS="/$PATH_DIAGRAMS"
 # get absolute path
 ROOT_OUTPUT_DIAGRAMS="$(pwd)"$OUTPUT_DIAGRAMS
 ROOT_PATH_PUML="${GITHUB_WORKSPACE}${PATH_PUML}"
+echo $ROOT_PATH_PUML
 
 # The default name for the wiki repository.
 TEMP_REPO_NAME="wiki-repo" 
