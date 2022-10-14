@@ -69,15 +69,15 @@ function getWikiRepository() {
 # Function to generate the png files
 function pumlToPng() {
     # default name to plantuml
-    FILE_JAR="plantuml.jar" 
+    local file_jar="plantuml.jar" 
 
-    wget -q -O $FILE_JAR https://github.com/plantuml/plantuml/releases/download/v1.2022.8/plantuml-1.2022.8.jar
+    wget -q -O $file_jar https://github.com/plantuml/plantuml/releases/download/v1.2022.8/plantuml-1.2022.8.jar
     hasError "Could not get plantuml.jar"
 
-    java -jar $FILE_JAR -charset UTF-8 -output $ROOT_OUTPUT_DIAGRAMS "${GITHUB_WORKSPACE}${PATH_PUML}/**.puml"
+    java -jar $file_jar -charset UTF-8 -output $ROOT_OUTPUT_DIAGRAMS "${GITHUB_WORKSPACE}${PATH_PUML}/**.puml"
     hasError "Could not generate png files"
     
-    rm $FILE_JAR
+    rm $file_jar
 }
 
 # for each in png files and put in markdown
