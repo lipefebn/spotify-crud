@@ -23,7 +23,7 @@ fi
 
 cd .. # return to root path
 
-# Put "/"
+# Put '/'
 OUTPUT_DIAGRAMS="/$OUTPUT_DIAGRAMS"
 PATH_DIAGRAMS="/$PATH_DIAGRAMS"
 
