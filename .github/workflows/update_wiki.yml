@@ -1,6 +1,13 @@
-name: Update wiki
+name: On update diagrams 
 
-on: [push]
+on:
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '*.*'
+    paths:
+      - docs/diagram/*
 
 jobs:
   Explore-GitHub-Actions:
