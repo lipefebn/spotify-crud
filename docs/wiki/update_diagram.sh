@@ -13,8 +13,17 @@ if [ -z "$OUTPUT_DIAGRAMS" ] || [[ "$OUTPUT_DIAGRAMS" =~ ^[\.\/] ]]; then
     exit 1
 fi
 
+cd .. # return to root path
+
+# Put "/"
 OUTPUT_DIAGRAMS="/$OUTPUT_DIAGRAMS"
 PATH_DIAGRAMS="/$PATH_DIAGRAMS"
+
+# get absolute path
+ROOT_OUTPUT_DIAGRAMS="$(pwd)"$OUTPUT_DIAGRAMS
+
+# The default name for the wiki repository.
+TEMP_REPO_NAME="wiki-repo" 
 
 MESSAGE_COMMIT=`git log -1 --format="%s"`
 
@@ -28,19 +37,15 @@ function hasError() {
 
 function SetConfigsGit() {
     # get configs git
-    local author=`git log -1 --format="%an"`
     local email=`git log -1 --format="%ae"`
-
+    echo email
     # set configs git
     git config --global user.email "$email"
-    git config --global user.name "$author"
+    git config --global user.name "$GITHUB_ACTOR"
 }
 
-# The default name for the wiki repository.
-TEMP_REPO_NAME="wiki-repo" 
 # Clone the wiki repository and change working directory to wiki repository
 function getWikiRepository() {
-    cd .. # return to root path
     hasError "Could not return to root path"
 
     git clone "https://$GITHUB_ACTOR:$TOKEN@github.com/$GITHUB_REPOSITORY.wiki.git" "$TEMP_REPO_NAME"
@@ -54,21 +59,24 @@ function getWikiRepository() {
     rm Diagrams.md
 }
 
+# Function to generate the png files
 function pumlToPng() {
-    local output="$(pwd)"$OUTPUT_DIAGRAMS
-    FILE_JAR="plantuml.jar"
+    # default name to plantuml
+    FILE_JAR="plantuml.jar" 
+
     wget -q -O $FILE_JAR https://github.com/plantuml/plantuml/releases/download/v1.2022.8/plantuml-1.2022.8.jar
     hasError "Could not get plantuml.jar"
-    java -jar $FILE_JAR -charset UTF-8 -output $output "${GITHUB_WORKSPACE}${PATH_PUML}/**.puml"
+
+    java -jar $FILE_JAR -charset UTF-8 -output $ROOT_OUTPUT_DIAGRAMS "${GITHUB_WORKSPACE}${PATH_PUML}/**.puml"
     hasError "Could not generate png files"
+    
     rm $FILE_JAR
 }
 
 # for each in png files and put in markdown
 function putEachPngFile() {
-    local path_diagrams="$(pwd)"$OUTPUT_DIAGRAMS
     local files_png
-    files_png=$(ls "$path_diagrams" -t -U | grep -oP "^[a-z]+(_[a-z]+)*\.png$")
+    files_png=$(ls "$ROOT_OUTPUT_DIAGRAMS" -t -U | grep -oP "^[a-z]+(_[a-z]+)*\.png$")
     hasError "Could not get png files"
     
     for i in $files_png; do
@@ -76,7 +84,6 @@ function putEachPngFile() {
     done
 }
 
-# [[/diagrams/diagrama_de_test.png|alt=diagrama_de_test]]
 # build markdown
 function doMarkdown() {
     local file="[[$OUTPUT_DIAGRAMS/$1|alt=$1]]"
