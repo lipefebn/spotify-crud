@@ -71,7 +71,7 @@ function pumlToPng() {
     wget -q -O $FILE_JAR https://github.com/plantuml/plantuml/releases/download/v1.2022.8/plantuml-1.2022.8.jar
     hasError "Could not get plantuml.jar"
 
-    java -jar $FILE_JAR -charset UTF-8 -output $ROOT_OUTPUT_DIAGRAMS "${GITHUB_WORKSPACE}${PATH_PUML}/**.puml"
+    java -q -jar $FILE_JAR -charset UTF-8 -output $ROOT_OUTPUT_DIAGRAMS "${GITHUB_WORKSPACE}${PATH_PUML}/**.puml"
     hasError "Could not generate png files"
     
     rm $FILE_JAR
