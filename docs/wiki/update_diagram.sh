@@ -91,6 +91,7 @@ function putEachPngFile() {
     local files_png
     files_png=$(ls "$ROOT_OUTPUT_DIAGRAMS" -t -U | grep -oP "^[a-z]+(_[a-z]+)*\.png$")
     hasError "Could not get png files"
+    ls "$ROOT_OUTPUT_DIAGRAMS"
     
     for file in $files_png; do
         doMarkdown $file
