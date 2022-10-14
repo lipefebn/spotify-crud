@@ -17,6 +17,10 @@ if [ -z "$OUTPUT_DIAGRAMS" ] || [[ "$OUTPUT_DIAGRAMS" =~ ^[\.\/] ]]; then
     exit 1
 fi
 
+if [ -z "$MESSAGE_COMMIT" ]; then
+    MESSAGE_COMMIT="Update wiki"
+fi
+
 cd .. # return to root path
 
 # Put "/"
@@ -29,7 +33,6 @@ ROOT_OUTPUT_DIAGRAMS="$(pwd)"$OUTPUT_DIAGRAMS
 # The default name for the wiki repository.
 TEMP_REPO_NAME="wiki-repo" 
 
-MESSAGE_COMMIT=`git log -1 --format="%s"`
 
 
 # Stop the execution
