@@ -20,6 +20,6 @@ jobs:
         shell: bash
         env:
           TOKEN: ${{secrets.GITHUB_TOKEN}}
-          PATH_DIAGRAMS: "docs/diagram/puml"
+          PATH_DIAGRAMS: "docs/diagram"
           OUTPUT_DIAGRAMS: "diagrams"
           PAGE_NAME: "Diagrams.md"
