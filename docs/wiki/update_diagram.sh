@@ -28,7 +28,6 @@ OUTPUT_DIAGRAMS="/$OUTPUT_DIAGRAMS"
 PATH_DIAGRAMS="/$PATH_DIAGRAMS"
 
 # get absolute path
-ROOT_OUTPUT_DIAGRAMS="$(pwd)"$OUTPUT_DIAGRAMS
 ROOT_PATH_PUML="${GITHUB_WORKSPACE}${PATH_DIAGRAMS}"
 echo $ROOT_PATH_PUML
 
@@ -66,6 +65,8 @@ function getWikiRepository() {
     # move to wiki repository
     cd "$TEMP_REPO_NAME"
     hasError "Could not move to wiki repository"
+
+    ROOT_OUTPUT_DIAGRAMS="$(pwd)"$OUTPUT_DIAGRAMS #Get root path to OUTPUT
 }
 
 # Function to generate the png files
@@ -91,7 +92,6 @@ function putEachPngFile() {
     local files_png
     files_png=$(ls "$ROOT_OUTPUT_DIAGRAMS" -t -U | grep -oP "^[a-z]+(_[a-z]+)*\.png$")
     hasError "Could not get png files"
-    echo "$ROOT_OUTPUT_DIAGRAMS"
     
     for file in $files_png; do
         doMarkdown $file
