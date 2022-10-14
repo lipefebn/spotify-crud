@@ -29,6 +29,7 @@ PATH_DIAGRAMS="/$PATH_DIAGRAMS"
 
 # get absolute path
 ROOT_OUTPUT_DIAGRAMS="$(pwd)"$OUTPUT_DIAGRAMS
+ROOT_PATH_PUML="${GITHUB_WORKSPACE}${PATH_PUML}"
 
 # The default name for the wiki repository.
 TEMP_REPO_NAME="wiki-repo" 
@@ -74,7 +75,7 @@ function pumlToPng() {
     wget -q -O $file_jar https://github.com/plantuml/plantuml/releases/download/v1.2022.8/plantuml-1.2022.8.jar
     hasError "Could not get plantuml.jar"
 
-    java -jar $file_jar -charset UTF-8 -output $ROOT_OUTPUT_DIAGRAMS "${GITHUB_WORKSPACE}${PATH_PUML}/**.puml"
+    java -jar $file_jar -charset UTF-8 -output $ROOT_OUTPUT_DIAGRAMS "$ROOT_PATH_PUML/**.puml"
     hasError "Could not generate png files"
     
     rm $file_jar
@@ -104,9 +105,10 @@ function doMarkdown() {
 }
 # build the title for each diagram
 function getTitle() {
-    local title=`expr match "$1" '\([a-z_]*\)'` # remove .png
-    title=${title//_/ } # replace "_" to blank space
-    title=${title^} # first letter to uppercase
+    local file_name_puml=`expr match "$1" '\([a-z_]*\)'` # remove .png
+    file_name_puml+=".puml"
+    local root_file_name_puml="$ROOT_PATH_PUML/$file_name_puml"
+    local title=$(cat $root_file_name_puml | grep -Po "(?<=title ).+")
     echo $title
 }
 
