@@ -122,10 +122,10 @@ function doPush() {
 }
 
 
-echo "configuring git..."
-SetConfigsGit
 echo "cloning the wiki repository..."
 getWikiRepository
+echo "configuring git..."
+SetConfigsGit
 echo "generating png files..."
 pumlToPng
 echo "generating the markdown file..."
