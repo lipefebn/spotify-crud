@@ -4,8 +4,8 @@ if [ -z "$TOKEN" ]; then
     echo "TOKEN is not specified"
     exit 1
 fi
-if [ -z "$PAGE_NAME" ]; then 
-    echo "PAGE_NAME is no specified"
+if [ -z "$WIKI_PAGE_NAME" ]; then 
+    echo "WIKI_PAGE_NAME is no specified"
     exit 1
 fi
 if [ -z "$PATH_PUML" ] || [[ "$PATH_PUML" =~ ^[\.\/] ]]; then
@@ -70,7 +70,7 @@ function pumlToPng() {
 # for each in png files and put in markdown
 function putEachPngFile() {
     # remove old markdown file
-    rm "$PAGE_NAME"
+    rm "$WIKI_PAGE_NAME"
 
     # get all png files 
     local files_png
@@ -86,14 +86,14 @@ function doMarkdown() {
     local file="[[$OUTPUT/$1|alt=$1]]"
     local title=$(getTitle $1)
 
-    echo "## $title" >> "$PAGE_NAME"
-    echo "$file" >> "$PAGE_NAME" # image
+    echo "## $title" >> "$WIKI_PAGE_NAME"
+    echo "$file" >> "$WIKI_PAGE_NAME" # image
 }
 # get the tittle in puml file
 function getTitle() {
     local file_name_puml=${1//.png/} # remove .png
     file_name_puml+=".puml"
-    
+
     local root_file_name_puml="$ROOT_PATH_PUML/$file_name_puml"
     local title=$(cat $root_file_name_puml | grep -Po "(?<=^title ).+$")
     echo $title
