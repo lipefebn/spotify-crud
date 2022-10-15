@@ -13,6 +13,6 @@ jobs:
         shell: bash
         env:
           TOKEN: ${{secrets.GITHUB_TOKEN}}
-          PATH_DIAGRAMS: "docs/diagram"
-          OUTPUT_DIAGRAMS: "diagrams"
-          PAGE_NAME: "Diagrams.md"
+          PATH_PUML: "docs/diagram"
+          OUTPUT: "diagrams"
+          WIKI_PAGE_NAME: "Diagrams.md"
