@@ -49,7 +49,7 @@ function getWikiRepository() {
     hasError "Could not clone repo"
     
     # move to wiki repository
-    if [ -z "$TEMP_REPO_NAM" ]; then
+    if [ -z "$TEMP_REPO_NAME" ]; then
         echo "ERROR: Could not move to wiki repository"
         exit 1
     fi
@@ -61,7 +61,7 @@ function pumlToPng() {
     # default name to plantuml
     local file_jar="plantuml.jar" 
 
-    wget -q -O $file_jar https://github.com/plantuml/plantuml/releases/download/v1.2022.8/plantuml-1.2022.8.jar
+    wget -q -O $file_jar https://github.com/plantuml/plantuml/releases/download/v1.2022.8/plantuml-1.2022.8.ja
     hasError "Could not get plantuml.jar"
 
     java -jar $file_jar -charset UTF-8 -output $ROOT_OUTPUT "$ROOT_PATH_PUML/**.puml"
