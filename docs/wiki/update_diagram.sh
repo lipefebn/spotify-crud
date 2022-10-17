@@ -68,6 +68,8 @@ function pumlToPng() {
     wget -q -O $file_jar https://github.com/plantuml/plantuml/releases/download/v1.2022.8/plantuml-1.2022.8.jar
     hasError "Could not get plantuml.jar"
 
+    rm -rf "$ROOT_OUTPUT" #remove old diagrams
+
     java -jar $file_jar -charset UTF-8 -output $ROOT_OUTPUT "$ROOT_PATH_PUML/**.puml"
     hasError "Could not generate png files"
     
@@ -107,11 +109,7 @@ function getTitle() {
 }
 
 function SetConfigsGit() {
-    # get configs git
-    local email=$GIT_EMAIL
-    
-    # set configs git
-    git config --global user.email "$email"
+    git config --global user.email "$GIT_EMAIL"
     hasError "Could not config git"
 
     git config --global user.name "$GITHUB_ACTOR"
@@ -146,4 +144,3 @@ SetConfigsGit
 
 echo "starting the function doPush..."
 doPush
-echo $GIT_EMAIL
