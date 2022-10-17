@@ -1,9 +1,8 @@
 @startuml
 
 title primeiro testee
-title sera
 
-actor a
+actor title
 participant b
 participant c
 participant d
