@@ -49,8 +49,11 @@ function getWikiRepository() {
     hasError "Could not clone repo"
     
     # move to wiki repository
-    cd "$TEMP_REPO_NAM"
-    hasError "Could not move to wiki repository"
+    if [ -z "$TEMP_REPO_NAM" ]; then
+        echo "ERROR: Could not move to wiki repository"
+        exit 1
+    fi
+    cd "$TEMP_REPO_NAME"
 }
 
 # Function to generate the png files
