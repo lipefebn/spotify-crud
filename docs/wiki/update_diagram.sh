@@ -61,7 +61,7 @@ function pumlToPng() {
     # default name to plantuml
     local file_jar="plantuml.jar" 
 
-    wget -q -O $file_jar https://github.com/plantuml/plantuml/releases/download/v1.2022.8/plantuml-1.2022.8.ja
+    wget -q -O $file_jar https://github.com/plantuml/plantuml/releases/download/v1.2022.8/plantuml-1.2022.8.jar
     hasError "Could not get plantuml.jar"
 
     java -jar $file_jar -charset UTF-8 -output $ROOT_OUTPUT "$ROOT_PATH_PUML/**.puml"
