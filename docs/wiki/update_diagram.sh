@@ -45,11 +45,11 @@ ROOT_PATH_PUML="${GITHUB_WORKSPACE}${PATH_PUML}"
 
 # Clone the wiki repository and change working directory to wiki repository
 function getWikiRepository() {
-    git clone "https://$GITHUB_ACTOR:$TOKEN@github.com/$GITHUB_REPOSITORY.wiki.gi" "$TEMP_REPO_NAME"
+    git clone "https://$GITHUB_ACTOR:$TOKEN@github.com/$GITHUB_REPOSITORY.wiki.git" "$TEMP_REPO_NAME"
     hasError "Could not clone repo"
     
     # move to wiki repository
-    cd "$TEMP_REPO_NAME"
+    cd "$TEMP_REPO_NAM"
     hasError "Could not move to wiki repository"
 }
 
