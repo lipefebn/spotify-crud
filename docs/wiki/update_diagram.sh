@@ -108,7 +108,7 @@ function getTitle() {
 
 function SetConfigsGit() {
     # get configs git
-    local email=`git log -1 --format="%ae"`
+    local email=$GIT_EMAIL
     
     # set configs git
     git config --global user.email "$email"
