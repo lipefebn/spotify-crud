@@ -17,8 +17,8 @@ if [ -z "$OUTPUT" ] || [[ "$OUTPUT" =~ ^[\.\/] ]]; then
     exit 1
 fi
 # set the default message if no message is specified.
-if [ -z "$MESSAGE_COMMIT" ]; then
-    MESSAGE_COMMIT="Update wiki"
+if [ -z "$COMMIT_MESSAGE" ]; then
+    COMMIT_MESSAGE="Update wiki"
 fi
 
 # Stop the execution
@@ -121,7 +121,7 @@ function doPush() {
     fi
 
     git add .
-    git commit -m "$MESSAGE_COMMIT" && git push "https://$GITHUB_ACTOR:$TOKEN@github.com/$GITHUB_REPOSITORY.wiki.git"
+    git commit -m "$COMMIT_MESSAGE" && git push "https://$GITHUB_ACTOR:$TOKEN@github.com/$GITHUB_REPOSITORY.wiki.git"
 }
 
 
