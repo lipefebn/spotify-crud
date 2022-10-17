@@ -2,13 +2,13 @@
 
 title primeiro testee
 
-actor a
+actor ue
 participant b
 participant c
 participant d
 database    e
 
-a -> b ++ : testando
+ue -> b ++ : testando
 group 1
     b -> e ++ : testando
     return
