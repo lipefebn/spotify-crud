@@ -69,6 +69,7 @@ function pumlToPng() {
     hasError "Could not get plantuml.jar"
 
     rm -rf "$ROOT_OUTPUT" #remove old diagrams
+    hasError "Could not remove old diagrams"
 
     java -jar $file_jar -charset UTF-8 -output $ROOT_OUTPUT "$ROOT_PATH_PUML/**.puml"
     hasError "Could not generate png files"
