@@ -5,20 +5,20 @@
 title second testee
 
 actor ue
-participant b
+participant h
 participant c
 participant d
 database    e
 
-ue -> b ++ : testando
+ue -> h ++ : testando
 group 1
-    b -> e ++ : testando
+    h -> e ++ : testando
     return
     c -> e ++ : testando
     return
     d -> e ++ : testando
     return
-    b -> d ++ : testando
+    h -> d ++ : testando
     return
 end
 return
