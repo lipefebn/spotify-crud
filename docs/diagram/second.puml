@@ -2,15 +2,15 @@
 
 !theme test from .
 
-title first
+title second testee
 
-actor test
+actor ue
 participant b
 participant c
 participant d
 database    e
 
-test -> b ++ : testando
+ue -> b ++ : testando
 group 1
     b -> e ++ : testando
     return
