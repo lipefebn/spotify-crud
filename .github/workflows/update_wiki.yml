@@ -15,4 +15,5 @@ jobs:
           TOKEN: ${{secrets.GITHUB_TOKEN}}
           PATH_PUML: "docs/diagram"
           OUTPUT: "diagrams"
+          GIT_EMAIL: "github-actions@github.com"
           WIKI_PAGE_NAME: "Diagrams.md"

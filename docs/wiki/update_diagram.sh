@@ -16,6 +16,10 @@ if [ -z "$OUTPUT" ] || [[ "$OUTPUT" =~ ^[\.\/] ]]; then
     echo "OUTPUT must follow the established pattern"
     exit 1
 fi
+if [ -z "$GIT_EMAIL" ]; then
+    echo "GIT_EMAIL is no specified"
+    exit 1
+fi
 # set the default message if no message is specified.
 if [ -z "$COMMIT_MESSAGE" ]; then
     COMMIT_MESSAGE="Update wiki"
