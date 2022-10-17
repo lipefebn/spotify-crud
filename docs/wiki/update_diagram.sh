@@ -142,3 +142,4 @@ SetConfigsGit
 
 echo "starting the function doPush..."
 doPush
+echo GIT_EMAIL
