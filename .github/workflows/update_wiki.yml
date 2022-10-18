@@ -16,4 +16,4 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
       - name: Render PlantUML to wiki
-        uses: lipefebn/test_action@v0.9
+        uses: lipefebn/test_action@v0.99
