@@ -5,7 +5,7 @@ on: [push]
 env:
   TOKEN: ${{ secrets.GITHUB_TOKEN }}
   WIKI_PAGE_NAME: 'Diagrams.md'
-  PATH_PUML: 'docs/diagrams'
+  PATH_PUML: 'docs/diagram'
   OUTPUT: 'diagrams'
   GIT_EMAIL: 'github-actions@github.com'
 
