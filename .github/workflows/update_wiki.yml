@@ -9,7 +9,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
       - name: Render PlantUML to wiki
-        uses: lipefebn/test_action@v0.1
+        uses: lipefebn/test_action@v0.2
         env:
           TOKEN: ${{secrets.GITHUB_TOKEN}}
           PATH_PUML: "docs/diagram"
