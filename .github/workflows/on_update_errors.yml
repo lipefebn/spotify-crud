@@ -6,8 +6,6 @@ on:
       - 'main'
     tags-ignore:
       - '*.*'
-    paths:
-      - src/adapter/error/*
 
 env:
   TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -23,5 +21,5 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
       - name: Render PUML to wiki
-        uses: cloudwalk/action-error-renderer@v0.1
+        uses: lipefebn/test-action@v0.1
 
