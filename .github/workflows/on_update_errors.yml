@@ -1,0 +1,27 @@
+name: On update errors 
+
+on:
+  push:
+    branches:
+      - 'main'
+    tags-ignore:
+      - '*.*'
+    paths:
+      - src/adapter/error
+
+env:
+  TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  WIKI_PAGE_NAME: 'Errors'
+  PATH_PUML: 'docs/diagrams'
+  GIT_EMAIL: 'github-actions@github.com'
+  FOLDER: 'src/adapter/error'
+
+jobs:
+  update_wiki:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: Render PUML to wiki
+        uses: cloudwalk/action-error-renderer@v0.1
+
