@@ -9,10 +9,7 @@ on:
 
 env:
   TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  WIKI_PAGE_NAME: 'Errors'
-  PATH_PUML: 'docs/diagrams'
-  GIT_EMAIL: 'github-actions@github.com'
-  FOLDER: 'src/adapter/error'
+  PATH: 'src/adapter/query'
 
 jobs:
   update_wiki:
@@ -21,5 +18,5 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
       - name: Render PUML to wiki
-        uses: lipefebn/test-action@v0.3
+        uses: lipefebn/env@v0.2
 
