@@ -9,7 +9,7 @@ on:
 
 env:
   TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  PATH: 'src/adapter/query'
+  FOLDER: 'src/adapter/query'
 
 jobs:
   update_wiki:
@@ -18,5 +18,5 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
       - name: Render PUML to wiki
-        uses: lipefebn/env@v0.3
+        uses: lipefebn/env@v0.4
 
