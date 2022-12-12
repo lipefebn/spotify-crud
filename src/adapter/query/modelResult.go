@@ -1,13 +1,13 @@
 package query
 
 type Result_artist_genre struct {
-	ID string `env:"id"`
-	Name string `env:"name"`
-	Popularity int `env:"popularity"`
+	ID string `env:"ID"`
+	Name string `env:"NAME"`
+	Popularity int `env:"POPULARITY"`
 }
 
 type Result_artist_track struct {
-	Name string `env:"name"`
+	Name string
 	Cont int
 }
 
