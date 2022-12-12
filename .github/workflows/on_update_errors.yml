@@ -22,5 +22,5 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
       - name: Render PUML to wiki
-        uses: lipefebn/env@v4.0
+        uses: lipefebn/env@v4.1
 
